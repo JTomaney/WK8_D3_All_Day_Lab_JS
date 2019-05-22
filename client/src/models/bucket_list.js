@@ -9,6 +9,14 @@ BucketList.prototype.bindEvents = function(){
     PubSub.subscribe('BucketListView:new-bucket-submitted', (evt)=> {
         this.postBucket(evt.detail);
     })
+    
+    PubSub.subscribe('BucketView:bucket-deleteOne', (evt) => {
+        this.deleteBucket(evt.detail);
+    })
+
+    PubSub.subscribe('BucketView:bucket-checkOff', (evt) => {
+        this.checkOffBucket(evt.detail);
+    })
 }
 
 BucketList.prototype.getData = function(){
@@ -28,5 +36,23 @@ BucketList.prototype.postBucket = function(bucket){
       })
     .catch(console.error)
 }
+
+BucketList.prototype.deleteBucket = function(bucketID){
+    const request = new RequestHelper(this.url);
+    request.delete(bucketID)
+      .then((bucketlist) => {
+          PubSub.publish('BucketList:data-loaded', bucketlist)
+      })
+      .catch(console.error)
+}  
+
+BucketList.prototype.checkOffBucket = function(bucketID){
+    const request = new RequestHelper(this.url);
+    request.patch(bucketID)
+      .then((bucketlist) => {
+          PubSub.publish('BucketList:data-loaded', bucketlist)
+      })
+      .catch(console.error)
+} 
 
 module.exports = BucketList;

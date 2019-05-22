@@ -22,6 +22,24 @@ const createRouter = function (collection) {
         .then(docs => res.json(docs));
    })
 
+   router.delete('/:id', (req, res) => {
+       const id = req.params.id
+       collection.deleteOne({_id: ObjectID(id)})
+         .then(() => collection.find().toArray())
+         .then(docs => res.json(docs)); 
+   })
+
+   router.patch('/:id', (req, res) => {
+       const id = req.params.id
+      //  const body = req.body.status = `Completed`
+       collection.updateOne(
+         {_id: ObjectID(id)},
+         {$set: {status: 'Completed'} }
+         )
+         .then(() => collection.find().toArray())
+         .then(docs => res.json(docs)); 
+   })
+
   return router;
 }
 

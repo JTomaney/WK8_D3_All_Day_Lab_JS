@@ -22,7 +22,8 @@ BucketListFormView.prototype.handleSubmit = function(evt){
 
 BucketListFormView.prototype.createNewListItem = function(form){
     const newListItem = {
-        thingToDo: form.thingToDo.value
+        thingToDo: form.thingToDo.value,
+        status: 'Pending'
     }
   return newListItem;
 }

@@ -16,4 +16,18 @@ RequestHelper.prototype.post = function(payload){
     .then((response) => response.json());
 }
 
+RequestHelper.prototype.delete = function(id){
+    return fetch(`${this.url}/${id}`, {
+        method: 'DELETE'
+    })
+    .then((response) => response.json())
+}
+
+RequestHelper.prototype.patch = function(id){
+    return fetch(`${this.url}/${id}`, {
+        method: 'PATCH'
+    })
+    .then((response) => response.json())
+}
+
 module.exports = RequestHelper;
