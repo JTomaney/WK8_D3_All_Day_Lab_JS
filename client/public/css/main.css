@@ -1,13 +1,19 @@
 body {
     font-family: 'Source Serif Pro', serif;
     background-color: #719bb7;
-    background: url(../images/hourglass.jpg);
+    background: url(../images/timeout.jpg);
     width: 80%;
     margin: 0 auto;
     font-color: #0E0B16;
   }
   
-  h1, h3 {
+  h1 {
+    colour: black;
+    font-family: 'Papyrus', cursive;
+    text-shadow: -1px 0 white, 0 1px white, 1px 0 black, 0 -1px black;
+  }
+  
+  h3 {
     colour: #A239CA;
     font-family: 'Papyrus', cursive;
   }
